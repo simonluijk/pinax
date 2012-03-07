@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import get_language_from_request, ugettext_lazy as _
+from django.utils.translation import get_language
 
 from django.contrib.auth.models import User, AnonymousUser
 
@@ -22,7 +23,7 @@ class Account(models.Model):
     language = models.CharField(_("language"),
         max_length = 10,
         choices = settings.LANGUAGES,
-        default = settings.LANGUAGE_CODE
+        default = get_language
     )
     
     def __unicode__(self):
